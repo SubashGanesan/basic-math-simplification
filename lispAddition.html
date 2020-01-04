@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet"> 
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="offset-xl-3 col-xl-6" style="margin-top: 100px;">
+          <div class="card" style="height: 400px;">
+            <div class="card-header text-dark bg-success d-flex justify-content-center" style="font-family: 'Exo 2', sans-serif;""
+            ><h1>Simplification</h1></div>
+            <div class="card-body p-5 text-white bg-dark">
+              <input
+                class="form-control"
+                type="text"
+                id="data"
+                style="width: 30rem;"
+                placeholder="Enter in this pattern : ['+' or '-' or '*' or '/'] [0-9] [0-9] [0-9]"
+              />
+              <br>
+              <button id="sum" onclick="eva()" class="btn btn-primary text-dark">
+                Evaluate
+              </button>
+              <br>
+              <label>Result :</label>
+              <input
+                class="form-control"
+                type="text"
+                id="res"
+                style="width: 15rem;"
+                placeholder="Result will displayed here!"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var eva = () => {
+        var arr = document.getElementById("data").value.split(" ");
+        var sign = arr.shift();
+        var newArr = arr.map(function(arr, index) {
+          return parseInt(arr);
+        });
+        sum = 0;
+        mul = 1;
+        div = 1;
+        diff = 0;
+        var res;
+        for (i = 0; i < newArr.length; i++) {
+          if (sign[0] == "+") {
+            sum = sum + newArr[i];
+            res = sum;
+          } else if (sign[0] == "-") {
+            diff = diff - newArr[i];
+            res = diff;
+          } else if (sign[0] == "*") {
+            mul = mul * newArr[i];
+            res = mul;
+          } else if (sign[0] == "/") {
+            div = div / newArr[i];
+            res = div;
+          }
+        }
+        document.getElementById("res").value = res;
+      };
+    </script>
+  </body>
+</html>
